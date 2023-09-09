@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Projects description
+
+The project is about League of Legends Champions.
+
+It will use RIOT api to fetch Champions informations.
+
 ## Available Scripts
 
 In the project directory, you can run:
