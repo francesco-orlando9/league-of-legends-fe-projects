@@ -2,5 +2,11 @@
   "title": "Dive into the Realm of League of Legends",
   "subtitle": "Unlock the lore, stats, and secrets of every champion. Begin your epic journey now.",
   "cta_all_champions": "Discover the Champions",
-  "home_introduction": "League of Legends isn't just a game – it's a world teeming with stories, battles, and unique champions. Whether you're a seasoned summoner or new to the rift, our platform provides a deep dive to LoL champions."
+  "home_introduction": "League of Legends isn't just a game – it's a world teeming with stories, battles, and unique champions. Whether you're a seasoned summoner or new to the rift, our platform provides a deep dive to LoL champions.",
+  "difficulty": "Difficulty",
+  "attack": "Attack",
+  "magic": "Magic",
+  "defense": "Defense",
+  "champion": "Champion",
+  "go_detail": "Champion Detail"
 }
