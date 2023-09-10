@@ -2,11 +2,13 @@ import ChampionsGeneric from "../components/Champions/ChampionGeneric";
 import { useLoaderData } from "react-router-dom";
 import { getChampionsUrl } from "../utils/urlUtils";
 
+import classes from "./ChampionsPage.module.css";
+
 export default function ChampionsPage() {
   const data: any = useLoaderData();
   const champions = data && data.champions;
   return (
-    <>
+    <div className={classes["champions-container"]}>
       {champions &&
         champions.map((champion: any) => (
           <ChampionsGeneric
@@ -19,7 +21,7 @@ export default function ChampionsPage() {
             tags={champion.tags}
           />
         ))}
-    </>
+    </div>
   );
 }
 
