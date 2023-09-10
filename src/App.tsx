@@ -2,7 +2,7 @@ import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./layout/Root";
 import HomePage from "./pages/Home";
-import ChampionsPage from "./pages/Champions";
+import ChampionsPage, { loader as fetchChampions } from "./pages/Champions";
 import ChampionDetailPage from "./pages/ChampionDetail";
 
 const router = createBrowserRouter([
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ChampionsPage />,
+            loader: fetchChampions,
           },
           {
             path: ":id",
