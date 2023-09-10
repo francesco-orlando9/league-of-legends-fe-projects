@@ -3,6 +3,20 @@
   justify-content: center;
 }
 
+.filters-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+  text-align: center;
+}
+
+.searchbar-container {
+  width: 305px;
+  margin: 0 auto;
+}
+
 .tags-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -21,6 +35,9 @@
   .tags-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+  .searchbar-container {
+    width: 355px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -29,6 +46,9 @@
   }
   .tags-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 405px;
   }
 }
 
@@ -39,7 +59,10 @@
   .tags-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     max-width: 1440px;
-    margin: 0 auto;
+    padding: 0 20%;
+  }
+  .searchbar-container {
+    width: 455px;
   }
 }
 
@@ -47,10 +70,16 @@
   .champions-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
+  .searchbar-container {
+    width: 505px;
+  }
 }
 
 @media screen and (min-width: 2500px) {
   .champions-container {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 555px;
   }
 }

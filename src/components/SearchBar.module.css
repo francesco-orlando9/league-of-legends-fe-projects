@@ -1,0 +1,60 @@
+.search-container {
+  position: relative;
+  width: 250px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #d3d3d3;
+  outline: none;
+  transition: border 0.3s ease;
+
+  &:focus {
+    border-color: #007bff;
+  }
+
+  &::placeholder {
+    color: #d3d3d3;
+  }
+}
+
+.search-icon {
+  position: absolute;
+  right: -35px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #d3d3d3;
+  pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  .search-container {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .search-container {
+    width: 350px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .search-container {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .search-container {
+    width: 450px;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  .search-container {
+    width: 500px;
+  }
+}

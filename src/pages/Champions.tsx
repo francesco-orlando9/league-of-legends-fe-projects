@@ -4,6 +4,7 @@ import { getChampionsUrl } from "../utils/urlUtils";
 
 import classes from "./ChampionsPage.module.css";
 import Tag from "../layout/Tag";
+import SearchBar from "../components/SearchBar";
 
 const tags = ["Mage", "Tank", "Fighter", "Assassin", "Marksman", "Support"];
 
@@ -12,7 +13,11 @@ export default function ChampionsPage() {
   const champions = data && data.champions;
   return (
     <>
-      <div className={classes.filters}>
+      <div className={classes["filters-container"]}>
+        <div className={classes["searchbar-container"]}>
+          <SearchBar />
+        </div>
+        <span>Or</span>
         <div className={classes["tags-container"]}>
           {tags.map((tag) => (
             <Tag key={tag} tagType={tag}>
