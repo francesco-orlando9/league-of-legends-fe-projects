@@ -1,23 +1,16 @@
 import { t } from "i18next";
 import { Link } from "react-router-dom";
-import { ENV } from "../env";
 
 import ChampionsImage from "../assets/images/lol-champions-min.jpg";
+import classes from "./Home.module.css";
 
 export default function HomePage() {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
+      <div className={classes["home-container"]}>
         <img
+          className={classes["champions-image"]}
           src={ChampionsImage}
-          style={{ width: "500px", margin: "0 auto" }}
           alt=""
         />
         <h1>{t("title")}</h1>
