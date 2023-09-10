@@ -14,6 +14,12 @@ export function getChampionUrl(championName: string) {
   return `${baseUrl}/13.17.1/data/${langCode}/champion/${championName}.json`;
 }
 
+export function getChampionSplashImageUrl(championName: string) {
+  const { baseUrl } = ENV;
+
+  return `${baseUrl}/img/champion/splash/${championName}_0.jpg`;
+}
+
 export function getChampionCardImgUrl(championName: string) {
   const { baseUrl } = ENV;
 
