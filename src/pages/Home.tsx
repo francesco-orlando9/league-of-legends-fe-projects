@@ -23,7 +23,6 @@ export default function HomePage() {
         <h1>{t("title")}</h1>
         <p>{t("home_introduction")}</p>
         <p>{t("subtitle")}</p>
-        <p>{ENV.url}</p>
         <Link to={"/champions"}>{t("cta_all_champions")}</Link>
       </div>
     </>
