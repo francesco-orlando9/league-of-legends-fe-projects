@@ -3,9 +3,23 @@
   justify-content: center;
 }
 
+.tags-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 5px;
+  text-align: center;
+}
+
+.tags-container span {
+  max-width: 100px;
+}
+
 @media screen and (min-width: 768px) {
   .champions-container {
     grid-template-columns: 1fr 1fr;
+  }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -13,11 +27,19 @@
   .champions-container {
     grid-template-columns: 1fr 1fr 1fr;
   }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .champions-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 }
 
