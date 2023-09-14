@@ -7,6 +7,7 @@
   font-size: 0.8rem; /* Reduced font size */
   border: 1px solid transparent; /* Added for tag types that might use border */
   color: #666; /* Dark gray text */
+  cursor: pointer;
 }
 
 .tag.Mage {
@@ -37,4 +38,40 @@
 .tag.Support {
   border: 1px solid #00bfa5; /* Teal border */
   background-color: #e0f2f1; /* Light teal background */
+}
+
+.tag.active {
+  /* Example: Changing the font weight and adding a border for active tags */
+  font-weight: bold;
+  border: 1px solid #333;
+}
+
+.Mage.active {
+  background-color: #7f00ff; /* example purple shade for mage */
+  color: white;
+}
+
+.Tank.active {
+  background-color: #004d40; /* example deep teal for tank */
+  color: white;
+}
+
+.Fighter.active {
+  background-color: #b71c1c; /* example deep red for fighter */
+  color: white;
+}
+
+.Marksman.active {
+  background-color: #ff6d00; /* example bright orange for marksman */
+  color: white;
+}
+
+.Assassin.active {
+  background-color: #000000; /* example black for assassin */
+  color: white;
+}
+
+.Support.active {
+  background-color: #1b5e20; /* example deep green for support */
+  color: white;
 }

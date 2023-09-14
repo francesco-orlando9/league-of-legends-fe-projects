@@ -50,16 +50,16 @@
   .searchbar-container {
     width: 405px;
   }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    max-width: 1440px;
+    padding: 0 20%;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .champions-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-  .tags-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    max-width: 1440px;
-    padding: 0 20%;
   }
   .searchbar-container {
     width: 455px;

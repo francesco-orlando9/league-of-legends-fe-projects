@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { t } from "i18next";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { GiRelicBlade, GiCheckedShield } from "react-icons/gi";
 import { IoExtensionPuzzle } from "react-icons/io5";
@@ -149,7 +150,7 @@ const ChampionsGeneric = ({
         >
           <FaRotate color="#ffffff" />
         </div>
-        <img
+        <LazyLoadImage
           className={classes["champion-image"]}
           style={{
             transform: isRotated ? "rotateY(180deg)" : "rotateY(0deg)",

@@ -5,28 +5,82 @@
 
 .search-input {
   width: 100%;
-  padding: 10px 40px 10px 15px;
+  padding: 10px 20px 10px 40px;
   border-radius: 25px;
   border: 1px solid #d3d3d3;
   outline: none;
-  transition: border 0.3s ease;
-
-  &:focus {
-    border-color: #007bff;
-  }
+  position: relative;
+  z-index: 100;
 
   &::placeholder {
     color: #d3d3d3;
   }
 }
 
+.search-input.suggestions-visible {
+  border-bottom: white;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
 .search-icon {
   position: absolute;
-  right: -35px;
-  top: 50%;
-  transform: translateY(-50%);
+  left: 15px;
+  top: 0;
   color: #d3d3d3;
   pointer-events: none;
+  height: 100%;
+  z-index: 101;
+}
+
+.suggestions {
+  position: absolute;
+  width: 100%;
+  padding: 30px 60px 10px 0px;
+  border-radius: 25px;
+  border: 1px solid #d3d3d3;
+  outline: none;
+  top: 0;
+  z-index: 1;
+  background: white;
+  display: none;
+}
+
+.suggestionsList {
+  overflow-y: auto;
+  max-height: 200px;
+  list-style: none;
+  padding-inline-start: 30px;
+}
+
+.suggestionsList li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestionsList li:hover {
+  background-color: #f5f5f5;
+}
+
+.suggestionsList::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari and Opera */
+}
+
+.suggestionsList {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.suggestion {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+.suggestion img {
+  width: 40px;
+  margin-right: 20px;
 }
 
 @media screen and (min-width: 768px) {
