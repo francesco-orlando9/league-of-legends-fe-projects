@@ -9,6 +9,7 @@ import Tag from "../layout/Tag";
 import SearchBar from "../components/SearchBar";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { t } from "i18next";
 
 const tags = ["Mage", "Tank", "Fighter", "Assassin", "Marksman", "Support"];
 
@@ -105,7 +106,7 @@ export default function ChampionsPage() {
             onSearchHandler={onSearchHandler}
           />
         </div>
-        <span>Or</span>
+        <span>{t("or")}</span>
         <div className={classes["tags-container"]}>
           {tags.map((tag) => (
             // TODO: Aggiungere classe active a questi tag, aggiungere cursor pointer
@@ -141,18 +142,6 @@ export default function ChampionsPage() {
 }
 
 export async function loader() {
-  // const _champions = await fetch(getChampionsUrl());
-  // let champions: any = null;
-  // if (_champions.ok) {
-  //   champions = await _champions.json();
-  // }
-
-  // const championsArray: any = [];
-  // Object.keys(champions.data).forEach((key) =>
-  //   championsArray.push(champions.data[key])
-  // );
-  // return { champions: championsArray };
-
   return queryClient.fetchQuery({
     queryKey: ["champions"],
     // @ts-ignore

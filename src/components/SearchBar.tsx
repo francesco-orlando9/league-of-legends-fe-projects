@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 
 import classes from "./SearchBar.module.css";
 import useOutsideClick from "../hooks/outsideClickHook";
+import { t } from "i18next";
 
 const SearchBar = (props: any) => {
   const [searchText, setSearchText] = useState<string>("");
@@ -63,7 +64,7 @@ const SearchBar = (props: any) => {
             setSuggestions(getFilteredChampions(e.target.value))
           }
           type="text"
-          placeholder="Search..."
+          placeholder={t("search_a_champion")}
           value={searchText}
           onChange={handleInputChange}
           onKeyUp={handleEnterKey}

@@ -1,6 +1,7 @@
 .champions-container {
   display: grid;
   justify-content: center;
+  padding-top: 1.5rem;
 }
 
 .filters-container {

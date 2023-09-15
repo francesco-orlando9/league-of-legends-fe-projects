@@ -8,5 +8,7 @@
   "magic": "Magic",
   "defense": "Defense",
   "champion": "Champion",
-  "go_detail": "Champion Detail"
+  "go_detail": "Champion Detail",
+  "search_a_champion": "Search a champion...",
+  "or": "Or"
 }

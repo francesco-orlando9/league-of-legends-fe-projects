@@ -8,5 +8,7 @@
   "magic": "Magia",
   "defense": "Defesa",
   "champion": "Campione",
-  "go_detail": "Dettaglio Campione"
+  "go_detail": "Dettaglio Campione",
+  "search_a_champion": "Cerca un campione...",
+  "or": "Oppure"
 }
