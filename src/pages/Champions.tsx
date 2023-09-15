@@ -1,28 +1,36 @@
 import ChampionsGeneric from "../components/Champions/ChampionGeneric";
 import { useLoaderData } from "react-router-dom";
-import {
-  getChampionsUrl,
-  getChampionSuggestionImgUrl,
-} from "../utils/urlUtils";
+import { getChampionSuggestionImgUrl } from "../utils/urlUtils";
+
+import { queryClient, fetchChampions } from "../utils/reactQuery";
 
 import classes from "./ChampionsPage.module.css";
 import Tag from "../layout/Tag";
 import SearchBar from "../components/SearchBar";
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const tags = ["Mage", "Tank", "Fighter", "Assassin", "Marksman", "Support"];
 
 export default function ChampionsPage() {
-  const { champions: fetchedChampions }: any = useLoaderData();
   const [champions, setChampions] = useState<any[]>([]);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [searchText, setSearchText] = useState<string>("");
 
-  // useEffect(() => {
-  //   setChampions(data && data.champions);
-  // }, [data]);
+  const { data, isError, error } = useQuery({
+    queryKey: ["champions"],
+    // @ts-ignore
+    queryFn: ({ signal }) => fetchChampions(signal),
+    staleTime: 3 * 60 * 10000, // 30 minuti
+  });
+
   useEffect(() => {
-    if (activeFilters.length === 0 && searchText.trim() === "") {
+    const fetchedChampions = data?.champions || [];
+    if (
+      fetchedChampions &&
+      activeFilters.length === 0 &&
+      searchText.trim() === ""
+    ) {
       setChampions(fetchedChampions);
     } else if (activeFilters.length !== 0 && searchText.trim() === "") {
       let _champions = [...fetchedChampions];
@@ -46,7 +54,7 @@ export default function ChampionsPage() {
         );
       });
     }
-  }, [fetchedChampions, activeFilters, searchText]);
+  }, [data, activeFilters, searchText]);
 
   const onTagClickHandler = (tagType: string) => {
     if (searchText.trim() !== "") setSearchText("");
@@ -69,23 +77,31 @@ export default function ChampionsPage() {
     setSearchText(name);
   };
 
-  const getChampionsNames = () => {
+  const getChampionsInfo = () => {
     const championsInfo: { imgUrl: string; name: string }[] = [];
-    champions.forEach((c: any) => {
-      const imageUrl = getChampionSuggestionImgUrl(c.id);
-      const name = c.name;
-      championsInfo.push({ imgUrl: imageUrl, name });
-    });
+    data &&
+      data.champions.forEach((c: any) => {
+        const imageUrl = getChampionSuggestionImgUrl(c.id);
+
+        const name = c.name;
+        championsInfo.push({ imgUrl: imageUrl, name });
+      });
 
     return championsInfo;
   };
 
   return (
     <>
-      <div className={classes["filters-container"]}>
+      <div style={{ display: isError ? "block" : "none" }}>
+        <h1>Couldnt fetch champhions info</h1>
+      </div>
+      <div
+        className={classes["filters-container"]}
+        style={{ display: !isError ? "flex" : "none" }}
+      >
         <div className={classes["searchbar-container"]}>
           <SearchBar
-            championsNames={getChampionsNames()}
+            championsInfo={getChampionsInfo()}
             onSearchHandler={onSearchHandler}
           />
         </div>
@@ -125,15 +141,22 @@ export default function ChampionsPage() {
 }
 
 export async function loader() {
-  const _champions = await fetch(getChampionsUrl());
-  let champions: any = null;
-  if (_champions.ok) {
-    champions = await _champions.json();
-  }
+  // const _champions = await fetch(getChampionsUrl());
+  // let champions: any = null;
+  // if (_champions.ok) {
+  //   champions = await _champions.json();
+  // }
 
-  const championsArray: any = [];
-  Object.keys(champions.data).forEach((key) =>
-    championsArray.push(champions.data[key])
-  );
-  return { champions: championsArray };
+  // const championsArray: any = [];
+  // Object.keys(champions.data).forEach((key) =>
+  //   championsArray.push(champions.data[key])
+  // );
+  // return { champions: championsArray };
+
+  return queryClient.fetchQuery({
+    queryKey: ["champions"],
+    // @ts-ignore
+    queryFn: ({ signal }) => fetchChampions(signal),
+    staleTime: 3 * 60 * 10000, // 30 minuti
+  });
 }

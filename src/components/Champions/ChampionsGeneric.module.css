@@ -32,6 +32,21 @@
   height: 100%;
 }
 
+.card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.card-header a {
+  display: flex;
+  align-items: center;
+}
+
+.card-header svg {
+  margin-left: 10px;
+}
+
 .name {
   margin-bottom: 0;
   font-size: 1.8em;

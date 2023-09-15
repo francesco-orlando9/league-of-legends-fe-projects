@@ -17,8 +17,7 @@ const SearchBar = (props: any) => {
   });
 
   // Sample data - replace with your own or fetch from API
-  const championsNames: { imgUrl: string; name: string }[] =
-    props.championsNames;
+  const championsInfo: { imgUrl: string; name: string }[] = props.championsInfo;
 
   const handleInputChange = (e: any) => {
     const value = e.target.value;
@@ -35,7 +34,7 @@ const SearchBar = (props: any) => {
   };
 
   const getFilteredChampions = (value: string) => {
-    return championsNames.filter((championInfo) =>
+    return championsInfo.filter((championInfo) =>
       championInfo.name.toLowerCase().startsWith(value.toLowerCase())
     );
   };

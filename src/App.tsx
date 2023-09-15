@@ -4,6 +4,8 @@ import RootLayout from "./layout/Root";
 import HomePage from "./pages/Home";
 import ChampionsPage, { loader as fetchChampions } from "./pages/Champions";
 import ChampionDetailPage from "./pages/ChampionDetail";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./utils/reactQuery";
 
 const router = createBrowserRouter([
   {
@@ -33,7 +35,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

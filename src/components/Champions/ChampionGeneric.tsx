@@ -130,8 +130,14 @@ const ChampionsGeneric = ({
 
   return (
     <ChampionCard>
-      <h1 className={classes.name}>{name}</h1>
-      {/* <div className={classes.tags}>{getTag()}</div> */}
+      <header className={classes["card-header"]}>
+        <h1 className={classes.name}>
+          {name.includes("Nunu") ? "Nunu" : name}
+        </h1>
+        <Link to={""}>
+          <FaArrowRight />
+        </Link>
+      </header>
       <div className={classes.container} onClick={handleRotate}>
         <div
           className={classes.tags}
@@ -188,9 +194,6 @@ const ChampionsGeneric = ({
           </div>
         </div>
       </div>
-      <Link to={""}>
-        {t("go_detail")} <FaArrowRight />
-      </Link>
     </ChampionCard>
   );
 };
