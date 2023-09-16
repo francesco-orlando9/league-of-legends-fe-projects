@@ -16,18 +16,12 @@ const Navbar = () => {
       <div>
         <h1>{t("site_title")}</h1>
       </div>
-      <button
+      <div
+        className={`${classes["menu-btn"]} ${isMenuOpen ? classes.open : ""}`}
         onClick={toggleMenuHandler}
-        className={`${classes.hamburger} ${isMenuOpen ? "" : classes.open}`}
       >
-        ☰
-      </button>
-      <button
-        onClick={toggleMenuHandler}
-        className={`${classes.hamburger} ${isMenuOpen ? classes.close : ""}`}
-      >
-        X
-      </button>
+        <div className={classes["menu-btn__burger"]}></div>
+      </div>
       <nav className={`${classes.navbar} ${isMenuOpen ? classes.open : ""}`}>
         <ul className={classes.list}>
           <li>
