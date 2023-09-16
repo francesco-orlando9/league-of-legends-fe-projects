@@ -1,4 +1,5 @@
 {
+  "site_title": "Lol Champions",
   "title": "Dive into the Realm of League of Legends",
   "subtitle": "Unlock the lore, stats, and secrets of every champion. Begin your epic journey now.",
   "cta_all_champions": "Discover the Champions",
@@ -10,5 +11,11 @@
   "champion": "Champion",
   "go_detail": "Champion Detail",
   "search_a_champion": "Search a champion...",
-  "or": "Or"
+  "or": "Or",
+  "link": {
+    "home": "Home",
+    "champions_gallery": "Champions",
+    "about": "About",
+    "contact": "Contact"
+  }
 }

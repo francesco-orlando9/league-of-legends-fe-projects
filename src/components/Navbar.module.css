@@ -1,0 +1,103 @@
+.header {
+  margin: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.hamburger {
+  display: none; /* Default a nascosto */
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding-right: 0;
+}
+.hamburger.open {
+  display: block;
+}
+.hamburger.close {
+  color: #fff;
+  z-index: 1005;
+  display: block;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  height: 85vh;
+  max-height: 567px;
+  transition: width 0.3s ease;
+  width: 0;
+  left: calc(100% - 100vw + 2rem);
+  z-index: 1000;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8); /* Puoi personalizzare questo colore */
+}
+.navbar.open {
+  width: 100vw;
+}
+
+.list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  flex-direction: column; /* Stack verticalmente su mobile */
+  gap: 1rem;
+  color: #fff;
+  width: 100%;
+  padding-left: 0;
+  align-items: center;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+}
+
+.list a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.list a:hover {
+  color: var(--color-button-hover);
+  text-decoration: underline;
+}
+
+.list a.active {
+  color: red;
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+
+@media screen and (min-width: 967px) {
+  .header {
+    max-width: 60%;
+    margin: 0 auto;
+  }
+  .hamburger {
+    display: none !important; /* Mostra l'hamburger su schermi piccoli */
+  }
+  .navbar {
+    display: flex; /* Nasconde il menu principale su schermi piccoli */
+    width: unset;
+    height: unset;
+    left: unset;
+    position: unset;
+    background: unset;
+  }
+  .list {
+    flex-direction: row;
+  }
+  .list a {
+    text-decoration: none;
+    color: #070200;
+  }
+}

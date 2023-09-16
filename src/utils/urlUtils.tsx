@@ -4,14 +4,14 @@ export function getChampionsUrl() {
   const { baseUrl } = ENV;
   const langCode = navigator.language === "it" ? "it_IT" : "en_US";
 
-  return `${baseUrl}/13.17.1/data/${langCode}/champion.json`;
+  return `${baseUrl}/13.18.1/data/${langCode}/champion.json`;
 }
 
 export function getChampionUrl(championName: string) {
   const { baseUrl } = ENV;
   const langCode = navigator.language === "it" ? "it_IT" : "en_US";
 
-  return `${baseUrl}/13.17.1/data/${langCode}/champion/${championName}.json`;
+  return `${baseUrl}/13.18.1/data/${langCode}/champion/${championName}.json`;
 }
 
 // Big Image for detail page
@@ -32,5 +32,5 @@ export function getChampionCardImgUrl(championName: string) {
 export function getChampionSuggestionImgUrl(championName: string) {
   const { baseUrl } = ENV;
 
-  return `${baseUrl}/13.17.1/img/champion/${championName}.png`;
+  return `${baseUrl}/13.18.1/img/champion/${championName}.png`;
 }

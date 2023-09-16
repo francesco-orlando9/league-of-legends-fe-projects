@@ -1,4 +1,5 @@
 {
+  "site_title": "Lol Champions",
   "title": "Immergiti nel Mondo di League of Legends",
   "subtitle": "Scopri la storia, le statistiche e i segreti di ogni campione. Inizia ora la tua epica avventura.",
   "cta_all_champions": "Esplora i Campioni",
@@ -10,5 +11,11 @@
   "champion": "Campione",
   "go_detail": "Dettaglio Campione",
   "search_a_champion": "Cerca un campione...",
-  "or": "Oppure"
+  "or": "Oppure",
+  "link": {
+    "home": "Home",
+    "champions_gallery": "Campioni",
+    "about": "About",
+    "contact": "Contatti"
+  }
 }

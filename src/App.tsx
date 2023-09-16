@@ -6,6 +6,8 @@ import ChampionsPage, { loader as fetchChampions } from "./pages/Champions";
 import ChampionDetailPage from "./pages/ChampionDetail";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/reactQuery";
+import AboutPage from "./pages/About";
+import ContactPage from "./pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
             element: <ChampionDetailPage />,
           },
         ],
+      },
+      {
+        path: "about",
+        element: <AboutPage />,
+      },
+      {
+        path: "contact",
+        element: <ContactPage />,
       },
     ],
   },

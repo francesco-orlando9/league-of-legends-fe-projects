@@ -134,7 +134,7 @@ const ChampionsGeneric = ({
         <h1 className={classes.name}>
           {name.includes("Nunu") ? "Nunu" : name}
         </h1>
-        <Link to={""}>
+        <Link to={`${name.toLocaleLowerCase()}`}>
           <FaArrowRight />
         </Link>
       </header>
