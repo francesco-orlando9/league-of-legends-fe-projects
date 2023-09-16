@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100dvh; /* need some test */
+}
+
 :root {
   /* Light Theme Defaults */
   --color-background: #ffffff;

@@ -27,9 +27,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
+              className={({ isActive }) => (isActive ? classes.active : "")}
               end={true}
             >
               {t("link.home")}
@@ -38,9 +36,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/champions"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
+              className={({ isActive }) => (isActive ? classes.active : "")}
               end={true}
             >
               {t("link.champions_gallery")}
@@ -49,9 +45,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/about"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
+              className={({ isActive }) => (isActive ? classes.active : "")}
               end={true}
             >
               {t("link.about")}
@@ -60,9 +54,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/contact"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
+              className={({ isActive }) => (isActive ? classes.active : "")}
               end={true}
             >
               {t("link.contact")}

@@ -1,33 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classes from "./Footer.module.css";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa"; // importa le icone dei social media
+import lolLogo from "../assets/images/lol_icon_v3_white.svg";
+import { t } from "i18next";
 
 const Footer: React.FC = () => {
   return (
-    <div className={classes.container}>
+    <footer className={classes.container}>
       <div className={classes.section}>
-        <Link to="#" className={classes.link}>
-          Chi siamo
-        </Link>
-        <Link to="#" className={classes.link}>
-          Termini di Servizio
-        </Link>
-        <Link to="#" className={classes.link}>
-          Politica sulla Privacy
-        </Link>
-      </div>
-
-      <div className={classes.section}>
-        <FaFacebook className={classes["social-icon"]} size={24} />
-        <FaTwitter className={classes["social-icon"]} size={24} />
-        <FaInstagram className={classes["social-icon"]} size={24} />
+        <div className={classes["footer-logo"]}>
+          <img src={lolLogo} alt="League of Legends Logo" />
+        </div>
+        <div className={classes["footer-links"]}>
+          <Link to={"/"} className={classes.link}>
+            {t("link.home")}
+          </Link>
+          <Link to={"/champions"} className={classes.link}>
+            {t("link.champions_gallery")}
+          </Link>
+          <Link to={"/about"} className={classes.link}>
+            {t("link.about")}
+          </Link>
+          <Link to={"/contact"} className={classes.link}>
+            {t("link.contact")}
+          </Link>
+        </div>
       </div>
 
       <div className={classes.copyright}>
-        &copy; {new Date().getFullYear()} Nome del Progetto
+        &copy; {new Date().getFullYear()} {t("footer_rights")}
       </div>
-    </div>
+    </footer>
   );
 };
 
