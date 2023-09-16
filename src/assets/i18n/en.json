@@ -18,5 +18,6 @@
     "about": "About",
     "contact": "Contact"
   },
-  "footer_rights": "All champion images, names, and related indicia are © and ™ Riot Games. This platform is an independent project and is not affiliated with Riot Games."
+  "footer_rights": "All champion images, names, and related indicia are © and ™ Riot Games. This platform is an independent project and is not affiliated with Riot Games.",
+  "no_champions_found": "No champions found."
 }

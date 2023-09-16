@@ -24,7 +24,7 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ChampionsPage />,
-            loader: fetchChampions,
+            // loader: fetchChampions,  da capire perchè in pagina usando il loader non tiene lo stato tanstack query
           },
           {
             path: ":id",

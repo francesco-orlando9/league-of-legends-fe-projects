@@ -113,11 +113,10 @@
   text-decoration: underline;
 }
 
-/* Responsive styles */
-
 @media screen and (min-width: 967px) {
   .header {
-    max-width: 60%;
+    width: 80%;
+    max-width: 1440px;
     margin: 0 auto;
   }
   .menu-btn {

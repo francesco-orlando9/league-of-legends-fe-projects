@@ -17,11 +17,12 @@ export default function ChampionsPage() {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [searchText, setSearchText] = useState<string>("");
 
-  const { data, isError, error } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["champions"],
     // @ts-ignore
     queryFn: ({ signal }) => fetchChampions(signal),
     staleTime: 3 * 60 * 10000, // 30 minuti
+    retry: 2,
   });
 
   useEffect(() => {
@@ -90,41 +91,63 @@ export default function ChampionsPage() {
     return championsInfo;
   };
 
+  function showFilter() {
+    let show = false;
+    if (champions.length > 0) {
+      show = true;
+    }
+    if (
+      champions.length === 0 &&
+      (activeFilters.length > 0 || searchText.trim() !== "")
+    ) {
+      show = true;
+    }
+
+    return show;
+  }
+
   return (
     <>
-      <div style={{ display: isError ? "block" : "none" }}>
-        <h1>Couldnt fetch champhions info</h1>
-      </div>
-      <div
-        className={classes["filters-container"]}
-        style={{ display: !isError ? "flex" : "none" }}
-      >
-        <div className={classes["searchbar-container"]}>
-          <SearchBar
-            championsInfo={getChampionsInfo()}
-            onSearchHandler={onSearchHandler}
-          />
+      {isError && (
+        <div className={classes.error}>
+          <h1>Couldnt fetch champhions info</h1>
         </div>
-        <span>{t("or")}</span>
-        <div className={classes["tags-container"]}>
-          {tags.map((tag) => (
-            // TODO: Aggiungere classe active a questi tag, aggiungere cursor pointer
-            // N.B. Queste classi non devono essere applicati ai tag nella card.
-            <Tag
-              key={tag}
-              tagType={tag}
-              isActive={activeFilters.includes(tag)}
-              onClickHandler={onTagClickHandler}
-            >
-              {tag}
-            </Tag>
-          ))}
+      )}
+      {isLoading && (
+        <div className={classes.loading}>
+          <h1>Loading champions..</h1>
         </div>
-      </div>
+      )}
+      {showFilter() && (
+        <div
+          className={classes["filters-container"]}
+          style={{ display: !isError ? "flex" : "none" }}
+        >
+          <div className={classes["searchbar-container"]}>
+            <SearchBar
+              championsInfo={getChampionsInfo()}
+              onSearchHandler={onSearchHandler}
+            />
+          </div>
+          <span>{t("or")}</span>
+          <div className={classes["tags-container"]}>
+            {tags.map((tag) => (
+              <Tag
+                key={tag}
+                tagType={tag}
+                isActive={activeFilters.includes(tag)}
+                onClickHandler={onTagClickHandler}
+              >
+                {tag}
+              </Tag>
+            ))}
+          </div>
+        </div>
+      )}
 
-      <div className={classes["champions-container"]}>
-        {champions &&
-          champions.map((champion: any) => (
+      {champions.length > 0 && (
+        <div className={classes["champions-container"]}>
+          {champions.map((champion: any) => (
             <ChampionsGeneric
               key={champion.key}
               id={champion.id}
@@ -135,7 +158,14 @@ export default function ChampionsPage() {
               tags={champion.tags}
             />
           ))}
-      </div>
+        </div>
+      )}
+      {!(champions.length > 0) &&
+        (activeFilters.length > 0 || searchText.trim() !== "") && (
+          <div className={classes["no-champions"]}>
+            <h1 style={{ textAlign: "center" }}>{t("no_champions_found")}</h1>
+          </div>
+        )}
     </>
   );
 }
