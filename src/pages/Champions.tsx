@@ -1,5 +1,4 @@
 import ChampionsGeneric from "../components/Champions/ChampionGeneric";
-import { useLoaderData } from "react-router-dom";
 import { getChampionSuggestionImgUrl } from "../utils/urlUtils";
 
 import { queryClient, fetchChampions } from "../utils/reactQuery";

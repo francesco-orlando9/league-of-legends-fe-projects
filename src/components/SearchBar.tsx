@@ -22,15 +22,13 @@ const SearchBar = (props: any) => {
 
   const handleInputChange = (e: any) => {
     const value = e.target.value;
-    if (e.target.value.trim === "") {
-      return;
-    }
+
     setSearchText(value);
-    if (value) {
-      const filteredSuggestions = getFilteredChampions(value);
-      setSuggestions(filteredSuggestions);
+
+    if (value.trim() !== "") {
+      setSuggestions(getFilteredChampions(value));
     } else {
-      setSuggestions([]);
+      setSuggestions(championsInfo);
     }
   };
 
@@ -59,8 +57,7 @@ const SearchBar = (props: any) => {
       <div className={classes["search-container"]} ref={ref}>
         <FaSearch className={classes["search-icon"]} />
         <input
-          onFocus={() => console.warn(suggestions)}
-          onClick={(e: any) =>
+          onFocus={(e: any) =>
             setSuggestions(getFilteredChampions(e.target.value))
           }
           type="text"
