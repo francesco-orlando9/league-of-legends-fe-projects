@@ -122,7 +122,7 @@ const ChampionsGeneric = ({
 
   const getTag = () => {
     return tags.map((tagType: string, index: number) => (
-      <Tag key={index} tagType={tagType}>
+      <Tag key={index} tagType={tagType} fromChampionCard={true}>
         {t(tagType)}
       </Tag>
     ));

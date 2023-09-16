@@ -1,77 +1,100 @@
+/* .tag {
+  display: inline-block;
+  padding: 2px 6px;
+  margin: 1px 3px;
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  border: 1px solid transparent;
+  color: #666;
+  cursor: pointer;
+} */
+
 .tag {
   display: inline-block;
-  padding: 2px 6px; /* Reduced padding */
-  margin: 1px 3px; /* Reduced margin */
-  border-radius: 15px; /* Increased border-radius for a pill-like appearance */
-  font-weight: 500;
-  font-size: 0.8rem; /* Reduced font size */
-  border: 1px solid transparent; /* Added for tag types that might use border */
-  color: #666; /* Dark gray text */
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  /* background-image: url('path_to_texture.jpg');
+    font-family: 'NomeDelFont'; */
 }
 
-.tag.Mage {
-  border: 1px solid #7e57c2; /* Purple border */
-  background-color: #f3e5f5; /* Light purple background */
+.tag:hover {
+  transform: scale(1.05);
+}
+
+.tag.disable-hover:hover {
+  transform: none !important;
 }
 
 .tag.Tank {
   border: 1px solid #4caf50; /* Green border */
-  background-color: #e8f5e9; /* Light green background */
+  background-color: rgba(0, 128, 128, 0.7);
 }
 
 .tag.Fighter {
   border: 1px solid #ff5722; /* Deep orange border */
-  background-color: #fbe9e7; /* Light orange background */
+  background-color: rgba(255, 69, 0, 0.7); /* Light orange background */
 }
 
 .tag.Assassin {
   border: 1px solid #d50000; /* Red border */
-  background-color: #ffdde1; /* Light red background */
+  background-color: rgba(128, 0, 128, 0.7); /* Light red background */
+}
+
+.tag.Mage {
+  border: 1px solid #7e57c2; /* Purple border */
+  background-color: rgba(0, 0, 255, 0.7); /* Light purple background */
 }
 
 .tag.Marksman {
   border: 1px solid #039be5; /* Blue border */
-  background-color: #e1f5fe; /* Light blue background */
+  background-color: rgba(218, 165, 32, 0.7); /* Light blue background */
 }
 
 .tag.Support {
   border: 1px solid #00bfa5; /* Teal border */
-  background-color: #e0f2f1; /* Light teal background */
+  background-color: rgba(173, 216, 230, 0.7); /* Light teal background */
 }
 
 .tag.active {
   /* Example: Changing the font weight and adding a border for active tags */
   font-weight: bold;
-  border: 1px solid #333;
+  border: 2px solid #333;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 
-.Mage.active {
-  background-color: #7f00ff; /* example purple shade for mage */
+/* .Mage.active {
+  background-color: #7f00ff;
   color: white;
 }
 
 .Tank.active {
-  background-color: #004d40; /* example deep teal for tank */
+  background-color: #004d40;
   color: white;
 }
 
 .Fighter.active {
-  background-color: #b71c1c; /* example deep red for fighter */
+  background-color: #b71c1c;
   color: white;
 }
 
 .Marksman.active {
-  background-color: #ff6d00; /* example bright orange for marksman */
+  background-color: #ff6d00;
   color: white;
 }
 
 .Assassin.active {
-  background-color: #000000; /* example black for assassin */
+  background-color: #000000;
   color: white;
 }
 
 .Support.active {
-  background-color: #1b5e20; /* example deep green for support */
+  background-color: #1b5e20;
   color: white;
-}
+} */

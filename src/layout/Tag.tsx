@@ -5,6 +5,7 @@ interface TagProps {
   onClickHandler?: any;
   children: any;
   isActive?: boolean;
+  fromChampionCard?: boolean;
 }
 
 const Tag = (props: TagProps) => {
@@ -12,12 +13,13 @@ const Tag = (props: TagProps) => {
     <span
       className={`${classes.tag} ${classes[props.tagType]} ${
         props.isActive ? classes.active : ""
-      }`}
+      } ${props.fromChampionCard ? classes["disable-hover"] : ""}`}
       onClick={
         props.onClickHandler
           ? props.onClickHandler.bind(null, props.tagType)
           : null
       }
+      style={props.fromChampionCard ? { color: "#ffffff" } : undefined}
     >
       {props.children}
     </span>
