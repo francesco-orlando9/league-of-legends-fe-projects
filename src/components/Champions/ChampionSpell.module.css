@@ -5,7 +5,8 @@
 .spell-image {
   width: 30%;
   display: flex;
-  align-items: flex-end;
+  align-items: self-start;
+  padding-top: 20px;
 }
 
 .spell-image img {

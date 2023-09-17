@@ -1,0 +1,29 @@
+.header {
+}
+
+.header h1 {
+  margin-bottom: 0.2rem;
+}
+
+.header h1,
+.header h2 {
+  margin-top: 0.2rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.splash-section {
+  max-width: 1024px;
+}
+.splash-section img {
+  width: 100%;
+}
+
+.champion-lore {
+  text-align: justify;
+}
+
+.champion-lore h1,
+.champion-spells h1 {
+  text-align: center;
+}
