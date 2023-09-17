@@ -2,7 +2,7 @@ import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./layout/Root";
 import HomePage from "./pages/Home";
-import ChampionsPage, { loader as fetchChampions } from "./pages/Champions";
+import ChampionsPage from "./pages/Champions";
 import ChampionDetailPage from "./pages/ChampionDetail";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/reactQuery";
@@ -24,7 +24,6 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <ChampionsPage />,
-            // loader: fetchChampions,  da capire perchè in pagina usando il loader non tiene lo stato tanstack query
           },
           {
             path: ":id",

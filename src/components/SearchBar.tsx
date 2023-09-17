@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 
 import { FaSearch } from "react-icons/fa";
 
@@ -6,7 +6,12 @@ import classes from "./SearchBar.module.css";
 import useOutsideClick from "../hooks/outsideClickHook";
 import { t } from "i18next";
 
-const SearchBar = (props: any) => {
+interface SearchBarProps {
+  championsInfo: any[];
+  onSearchHandler: any;
+}
+
+const SearchBar = ({ championsInfo, onSearchHandler }: SearchBarProps) => {
   const [searchText, setSearchText] = useState<string>("");
   const [suggestions, setSuggestions] = useState<
     { imgUrl: string; name: string }[]
@@ -18,39 +23,49 @@ const SearchBar = (props: any) => {
   });
 
   // Sample data - replace with your own or fetch from API
-  const championsInfo: { imgUrl: string; name: string }[] = props.championsInfo;
+  const getFilteredChampions = useCallback(
+    (value: string) => {
+      return championsInfo.filter((championInfo) =>
+        championInfo.name.toLowerCase().startsWith(value.toLowerCase())
+      );
+    },
+    [championsInfo]
+  );
 
-  const handleInputChange = (e: any) => {
-    const value = e.target.value;
+  const handleInputChange = useCallback(
+    (e: any) => {
+      const value = e.target.value;
 
-    setSearchText(value);
+      setSearchText(value);
 
-    if (value.trim() !== "") {
-      setSuggestions(getFilteredChampions(value));
-    } else {
-      setSuggestions(championsInfo);
-    }
-  };
+      if (value.trim() !== "") {
+        setSuggestions(getFilteredChampions(value));
+      } else {
+        setSuggestions(championsInfo);
+      }
+    },
+    [championsInfo, getFilteredChampions]
+  );
 
-  const getFilteredChampions = (value: string) => {
-    return championsInfo.filter((championInfo) =>
-      championInfo.name.toLowerCase().startsWith(value.toLowerCase())
-    );
-  };
-
-  const handleSuggestionClick = (suggestion: any) => {
-    setSearchText(suggestion.name);
-    setSuggestions([]);
-    props.onSearchHandler(suggestion.name);
-  };
-
-  const handleEnterKey = (event: any) => {
-    if (event.key === "Enter") {
+  const handleSuggestionClick = useCallback(
+    (suggestion: any) => {
+      setSearchText(suggestion.name);
       setSuggestions([]);
+      onSearchHandler(suggestion.name);
+    },
+    [onSearchHandler]
+  );
 
-      props.onSearchHandler(searchText);
-    }
-  };
+  const handleEnterKey = useCallback(
+    (event: any) => {
+      if (event.key === "Enter") {
+        setSuggestions([]);
+
+        onSearchHandler(searchText);
+      }
+    },
+    [onSearchHandler, searchText]
+  );
 
   return (
     <>

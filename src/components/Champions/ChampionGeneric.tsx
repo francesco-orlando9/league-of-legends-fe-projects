@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { t } from "i18next";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -105,11 +105,11 @@ const ChampionsGeneric = ({
 
   const blurbText = isMobile ? reduceBlurb(blurb) : blurb;
 
-  const handleRotate = () => {
+  const handleRotate = useCallback(() => {
     setIsRotated(!isRotated);
-  };
+  }, [isRotated]);
 
-  const getStars = (statistic: number) => {
+  const getStars = useCallback((statistic: number) => {
     let difficulty = getDifficultyArray(statistic);
 
     return difficulty.map((diff: POSSIBLE_DIFFICULT, index: number) => {
@@ -118,15 +118,15 @@ const ChampionsGeneric = ({
         return <FaRegStarHalfStroke key={index} />;
       return <FaStar key={index} />;
     });
-  };
+  }, []);
 
-  const getTag = () => {
+  const championsTag = useMemo(() => {
     return tags.map((tagType: string, index: number) => (
       <Tag key={index} tagType={tagType} fromChampionCard={true}>
         {t(tagType)}
       </Tag>
     ));
-  };
+  }, [tags]);
 
   return (
     <ChampionCard>
@@ -146,7 +146,7 @@ const ChampionsGeneric = ({
             backfaceVisibility: "hidden",
           }}
         >
-          {getTag()}
+          {championsTag}
         </div>
         <div
           className={classes.flip}

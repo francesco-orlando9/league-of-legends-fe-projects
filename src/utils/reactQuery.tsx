@@ -8,7 +8,7 @@ export async function fetchChampions({
 }: {
   signal?: AbortSignal;
 }): Promise<{ champions: any[] }> {
-  const response = await fetch(getChampionsUrl());
+  const response = await fetch(getChampionsUrl(), { signal });
   if (!response.ok) {
     const error: any = new Error(
       "An error occured while fetching champions info."
@@ -22,5 +22,6 @@ export async function fetchChampions({
   Object.keys(fetchedChampions.data).forEach((key) =>
     championsArray.push(fetchedChampions.data[key])
   );
+
   return { champions: championsArray };
 }

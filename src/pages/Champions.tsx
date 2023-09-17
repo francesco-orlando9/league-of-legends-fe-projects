@@ -1,110 +1,87 @@
 import ChampionsGeneric from "../components/Champions/ChampionGeneric";
 import { getChampionSuggestionImgUrl } from "../utils/urlUtils";
 
-import { queryClient, fetchChampions } from "../utils/reactQuery";
+import { fetchChampions } from "../utils/reactQuery";
 
 import classes from "./ChampionsPage.module.css";
 import Tag from "../layout/Tag";
 import SearchBar from "../components/SearchBar";
-import { useEffect, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { t } from "i18next";
 
 const tags = ["Mage", "Tank", "Fighter", "Assassin", "Marksman", "Support"];
 
 export default function ChampionsPage() {
-  const [champions, setChampions] = useState<any[]>([]);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [searchText, setSearchText] = useState<string>("");
 
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["champions"],
     // @ts-ignore
     queryFn: ({ signal }) => fetchChampions(signal),
-    staleTime: 3 * 60 * 10000, // 30 minuti
-    retry: 2,
   });
 
-  useEffect(() => {
+  const champions = useMemo(() => {
     const fetchedChampions = data?.champions || [];
-    if (
-      fetchedChampions &&
-      activeFilters.length === 0 &&
-      searchText.trim() === ""
-    ) {
-      setChampions(fetchedChampions);
-    } else if (activeFilters.length !== 0 && searchText.trim() === "") {
-      let _champions = [...fetchedChampions];
-      activeFilters.forEach((filter) => {
-        _champions = _champions.filter((c) => c.tags.includes(filter));
-      });
-      setChampions(_champions);
-    } else if (activeFilters.length === 0 && searchText.trim() !== "") {
-      let _champions = [...fetchedChampions];
+    let _champions = [...fetchedChampions];
+
+    if (activeFilters.length !== 0) {
+      _champions = _champions.filter((c) =>
+        activeFilters.every((filter) => c.tags.includes(filter))
+      );
+    }
+
+    if (searchText.trim() !== "") {
       _champions = _champions.filter((c) =>
         c.name.toLowerCase().startsWith(searchText.toLowerCase())
       );
-      setChampions(_champions);
-    } else if (activeFilters.length !== 0 && searchText.trim() !== "") {
-      let _champions = [...fetchedChampions];
-      activeFilters.forEach((filter) => {
-        _champions = _champions.filter(
-          (c) =>
-            c.tags.includes(filter) &&
-            c.name.toLowerCase().startsWith(searchText.toLowerCase())
-        );
-      });
     }
+    return _champions;
   }, [data, activeFilters, searchText]);
 
-  const onTagClickHandler = (tagType: string) => {
-    if (searchText.trim() !== "") setSearchText("");
-    setActiveFilters((prevState) => {
-      let newState: string[] = [];
+  const onTagClickHandler = useCallback(
+    (tagType: string) => {
+      if (searchText.trim() !== "") setSearchText("");
+      setActiveFilters((prevState) => {
+        let newState: string[] = [];
 
-      const index = prevState.findIndex((tag) => tag === tagType);
-      if (index !== -1) {
-        newState = prevState.filter((tag) => tag !== tagType);
-      } else {
-        newState = [...prevState, tagType];
-      }
+        const index = prevState.findIndex((tag) => tag === tagType);
+        if (index !== -1) {
+          newState = prevState.filter((tag) => tag !== tagType);
+        } else {
+          newState = [...prevState, tagType];
+        }
 
-      return newState;
-    });
-  };
-
-  const onSearchHandler = (name: string) => {
-    if (activeFilters.length > 0) setActiveFilters([]);
-    setSearchText(name);
-  };
-
-  const getChampionsInfo = () => {
-    const championsInfo: { imgUrl: string; name: string }[] = [];
-    data &&
-      data.champions.forEach((c: any) => {
-        const imageUrl = getChampionSuggestionImgUrl(c.id);
-
-        const name = c.name;
-        championsInfo.push({ imgUrl: imageUrl, name });
+        return newState;
       });
+    },
+    [searchText]
+  );
 
-    return championsInfo;
-  };
+  const onSearchHandler = useCallback(
+    (name: string) => {
+      if (activeFilters.length > 0) setActiveFilters([]);
+      setSearchText(name);
+    },
+    [activeFilters]
+  );
 
-  function showFilter() {
-    let show = false;
-    if (champions.length > 0) {
-      show = true;
-    }
-    if (
-      champions.length === 0 &&
-      (activeFilters.length > 0 || searchText.trim() !== "")
-    ) {
-      show = true;
-    }
+  const showFilter = useMemo(() => {
+    return (
+      champions.length > 0 ||
+      (champions.length === 0 &&
+        (activeFilters.length > 0 || searchText.trim() !== ""))
+    );
+  }, [champions, activeFilters, searchText]);
 
-    return show;
-  }
+  const getChampionsInfo = useMemo(() => {
+    const fetchedChampions = data?.champions || [];
+    return fetchedChampions.map((c: any) => ({
+      imgUrl: getChampionSuggestionImgUrl(c.id),
+      name: c.name,
+    }));
+  }, [data]);
 
   return (
     <>
@@ -118,14 +95,14 @@ export default function ChampionsPage() {
           <h1>Loading champions..</h1>
         </div>
       )}
-      {showFilter() && (
+      {showFilter && (
         <div
           className={classes["filters-container"]}
           style={{ display: !isError ? "flex" : "none" }}
         >
           <div className={classes["searchbar-container"]}>
             <SearchBar
-              championsInfo={getChampionsInfo()}
+              championsInfo={getChampionsInfo}
               onSearchHandler={onSearchHandler}
             />
           </div>
@@ -168,13 +145,4 @@ export default function ChampionsPage() {
         )}
     </>
   );
-}
-
-export async function loader() {
-  return queryClient.fetchQuery({
-    queryKey: ["champions"],
-    // @ts-ignore
-    queryFn: ({ signal }) => fetchChampions(signal),
-    staleTime: 3 * 60 * 10000, // 30 minuti
-  });
 }
