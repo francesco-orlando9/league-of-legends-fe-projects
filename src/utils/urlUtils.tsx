@@ -34,3 +34,17 @@ export function getChampionSuggestionImgUrl(championName: string) {
 
   return `${baseUrl}/13.18.1/img/champion/${championName}.png`;
 }
+
+// Spell image for detail page
+export function getChampionSpellImgUrl(spellId: string) {
+  const { baseUrl } = ENV;
+
+  return `${baseUrl}/13.18.1/img/spell/${spellId}.png`;
+}
+
+// Passive spell image for detail page
+export function getChampionPassiveImgUrl(name: string) {
+  const { baseUrl } = ENV;
+
+  return `${baseUrl}/13.18.1/img/passive/${name}`;
+}
