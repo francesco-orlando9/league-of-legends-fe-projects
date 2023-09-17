@@ -14,6 +14,7 @@
   padding: 10px 0;
   flex-direction: column;
   align-items: center;
+  max-width: 1000px;
 }
 
 .container > .section:first-child {
@@ -23,6 +24,7 @@
 
 .footer-logo {
   width: 30%;
+  max-width: 150px;
 }
 
 .footer-logo img {
@@ -37,6 +39,7 @@
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
+  max-width: 250px;
 }
 
 .link {
@@ -53,9 +56,7 @@
   font-size: 0.9em;
   padding: 0 40px;
   text-align: justify;
-}
-
-@media screen and (min-width: 768px) {
+  max-width: 1000px;
 }
 
 @media screen and (min-width: 1024px) {
