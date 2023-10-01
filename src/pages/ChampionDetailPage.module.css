@@ -1,3 +1,12 @@
+.container {
+  display: grid;
+  row-gap: 20px;
+}
+
+section h1 {
+  text-align: center;
+}
+
 .header {
 }
 

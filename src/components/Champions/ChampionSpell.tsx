@@ -40,7 +40,7 @@ const ChampionSpell = ({
         />
       </div>
 
-      <div className={classes["spell-text"]}>
+      <div className={`${classes["spell-text"]} spell-text`}>
         <h4>
           [{spellKey}] {name}
         </h4>

@@ -34,14 +34,14 @@ export default function ChampionDetailPage() {
   if (data && data.champion) {
     const { champion } = data;
     content = (
-      <>
+      <div className={classes.container}>
         <header className={classes.header}>
           <h1>{champion.name}</h1>
           <h2>{champion.title}</h2>
         </header>
         <section className={classes["splash-section"]}>
           <img
-            src={getChampionSplashImageUrl(championName)}
+            src={getChampionSplashImageUrl(championName, 0)}
             alt="Champion Splash"
           />
         </section>
@@ -52,6 +52,7 @@ export default function ChampionDetailPage() {
         <section className={classes["champion-spells"]}>
           <h1>Spells</h1>
           <Carousel
+            type={"spells"}
             components={((): any[] => {
               return [
                 <ChampionSpell
@@ -77,7 +78,44 @@ export default function ChampionDetailPage() {
 
           {}
         </section>
-      </>
+        <section className={classes["champion-tips"]}>
+          <Carousel
+            type={"tips"}
+            components={((): any[] => {
+              return [
+                <div className={`${classes["playing-with-tips"]} tip`}>
+                  <h1>Playing as {champion.name}</h1>
+                  {champion.allytips.length > 0 ? (
+                    <ul>
+                      {champion.allytips.map((tip: string) => (
+                        <li key={tip}>{tip}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ textAlign: "center", padding: "20px" }}>
+                      No tip found!
+                    </p>
+                  )}
+                </div>,
+                <div className={`${classes["playing-against-tips"]} tip`}>
+                  <h1>Playing against {champion.name}</h1>
+                  {champion.enemytips.length > 0 ? (
+                    <ul>
+                      {champion.enemytips.map((tip: string) => (
+                        <li key={tip}>{tip}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ textAlign: "center", padding: "20px" }}>
+                      No tip found!
+                    </p>
+                  )}
+                </div>,
+              ];
+            })()}
+          />
+        </section>
+      </div>
     );
   }
 

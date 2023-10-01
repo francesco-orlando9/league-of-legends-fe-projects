@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import classes from "./Carousel.module.css";
 import Card from "../layout/Card";
 
 interface CarouselProps {
   components: any[];
+  type: "spells" | "tips";
 }
 
 interface SwipeState {
@@ -25,26 +26,15 @@ const defaultSwipeState: SwipeState = {
   shouldTransition: true,
 };
 
-const Carousel = ({ components }: CarouselProps) => {
+const Carousel = ({ components, type }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [touchStart, setTouchStart] = useState<number>(0);
   const [touchEnd, setTouchEnd] = useState<number>(0);
 
   const [swipeState, setSwipeState] = useState<SwipeState>(defaultSwipeState);
+  const innerDiv = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (!swipeState.isSwiping) {
-        simulateSlide();
-      }
-    }, 10000);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [swipeState]);
 
   const onTouchStart = (e: any) => {
     setTouchEnd(0);
@@ -94,7 +84,15 @@ const Carousel = ({ components }: CarouselProps) => {
     return direction;
   };
 
-  const carouselComponents = [components[0], ...components[1]];
+  // const carouselComponents = [components[0], ...components[1]];
+  const carouselComponents: any[] = [];
+  components.forEach((c) => {
+    if (Array.isArray(c)) {
+      c.forEach((comp) => carouselComponents.push(comp));
+    } else {
+      carouselComponents.push(c);
+    }
+  });
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
@@ -129,6 +127,42 @@ const Carousel = ({ components }: CarouselProps) => {
     );
   };
 
+  const setMaxHeight = useCallback(() => {
+    // window.getComputedStyle(document.getElementsByClassName("spell-text")[1]).height;
+    let items = null;
+    let heightToAdd = 0;
+    if (type === "spells") {
+      items = document.getElementsByClassName("spell-text");
+      heightToAdd = 25;
+    } else {
+      items = document.getElementsByClassName("tip");
+      heightToAdd = 70;
+    }
+
+    let maxHeight = 0;
+    for (let i = 0; i < items.length; i++) {
+      console.log(items[i]);
+      const itemHeight = parseFloat(window.getComputedStyle(items[i]).height);
+      if (itemHeight > maxHeight) maxHeight = itemHeight + heightToAdd;
+    }
+    debugger;
+    console.log(maxHeight, type);
+    if (innerDiv.current) {
+      innerDiv.current.style.height = `${maxHeight}px`;
+    }
+  }, [type]);
+
+  useEffect(() => {
+    setMaxHeight();
+    const timeout = setTimeout(() => {
+      simulateSlide();
+    }, 4000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [setMaxHeight]);
+
   return (
     <div
       className={classes.carousel}
@@ -136,7 +170,10 @@ const Carousel = ({ components }: CarouselProps) => {
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
     >
-      <div style={{ position: "relative", height: 215, overflow: "hidden" }}>
+      <div
+        ref={innerDiv}
+        style={{ position: "relative", height: 215, overflow: "hidden" }}
+      >
         {carouselComponents.map((component, index) => (
           <div
             key={index}

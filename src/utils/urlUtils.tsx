@@ -15,10 +15,14 @@ export function getChampionUrl(championName: string) {
 }
 
 // Big Image for detail page
-export function getChampionSplashImageUrl(championName: string) {
+// imgNumber is for skin image
+export function getChampionSplashImageUrl(
+  championName: string,
+  imgNumber: number
+) {
   const { baseUrl } = ENV;
 
-  return `${baseUrl}/img/champion/splash/${championName}_0.jpg`;
+  return `${baseUrl}/img/champion/splash/${championName}_${imgNumber}.jpg`;
 }
 
 // Card Image for all champions page
