@@ -25,7 +25,9 @@
     "home": "Immergiti nel Mondo di League of Legends",
     "champion_lore": "Storia",
     "champion_spells": "Abilità",
-    "champion_tips": "Consigli"
+    "champion_tips": "Consigli",
+    "champion_skins": "Skins",
+    "base_skin": "Aspetto base"
   },
   "no_tip_found": "Nessun consiglio trovato",
   "playing_as": "Gioca come",

@@ -1,0 +1,19 @@
+img {
+  width: 100%;
+}
+.carousel-indicator {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.dot {
+  background-color: #333;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+.active {
+  background-color: #fa2020;
+}

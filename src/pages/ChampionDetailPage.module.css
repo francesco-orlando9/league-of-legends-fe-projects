@@ -39,29 +39,26 @@ section h1 {
 .champion-tips {
   width: 100%;
 }
+.champion-skins {
+  width: 100%;
+}
 
 @media screen and (min-width: 567px) {
-  section {
-    max-width: 90%;
-  }
+  section,
   .splash-section {
     max-width: 90%;
   }
 }
 
 @media screen and (min-width: 767px) {
-  section {
-    max-width: 75%;
-  }
+  section,
   .splash-section {
     max-width: 75%;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  section {
-    max-width: 1024px;
-  }
+  section,
   .splash-section {
     max-width: 1024px;
   }

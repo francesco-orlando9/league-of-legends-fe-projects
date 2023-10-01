@@ -1,53 +1,32 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Tooltip } from "react-tooltip";
+import { DIRECTION, SwipeState, defaultSwipeState } from "./Carousel";
 
-import classes from "./Carousel.module.css";
-import Card from "../layout/Card";
+import classes from "./SkinCarousel.module.css";
+import { t } from "i18next";
 
-interface CarouselProps {
-  components: any[];
-  type: "spells" | "tips" | "skins";
+interface SkinCarouselProps {
+  images: { name: string; src: string }[];
 }
 
-export interface SwipeState {
-  isSwiping: boolean;
-  swipeDistance: number;
-  shouldTransition: boolean;
-}
-
-export enum DIRECTION {
-  LEFT = "left",
-  RIGHT = "right",
-  NONE = "none",
-}
-
-export const defaultSwipeState: SwipeState = {
-  isSwiping: false,
-  swipeDistance: 0,
-  shouldTransition: true,
-};
-
-const Carousel = ({ components, type }: CarouselProps) => {
+const SkinCarousel = ({ images }: SkinCarouselProps) => {
   const [touchStart, setTouchStart] = useState<number>(0);
   const [touchEnd, setTouchEnd] = useState<number>(0);
   const [swipeState, setSwipeState] = useState<SwipeState>(defaultSwipeState);
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [windowWidth, setWindowWidth] = useState<number>(0);
-
   const innerDiv = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: any) => {
-    if (windowWidth > 1024) return;
-
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
   const onTouchMove = (e: any) => {
-    if (windowWidth > 1024) return;
-
     setSwipeState({
       isSwiping: true,
       swipeDistance: touchStart - e.targetTouches[0].clientX,
@@ -57,8 +36,6 @@ const Carousel = ({ components, type }: CarouselProps) => {
   };
 
   const onTouchEnd = () => {
-    if (windowWidth > 1024) return;
-
     setSwipeState({
       isSwiping: false,
       swipeDistance: 0,
@@ -92,24 +69,15 @@ const Carousel = ({ components, type }: CarouselProps) => {
     return direction;
   };
 
-  const carouselComponents: any[] = [];
-  components.forEach((c) => {
-    if (Array.isArray(c)) {
-      c.forEach((comp) => carouselComponents.push(comp));
-    } else {
-      carouselComponents.push(c);
-    }
-  });
-
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + 1 === carouselComponents.length ? 0 : prevIndex + 1
+      prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
   };
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - 1 < 0 ? carouselComponents.length - 1 : prevIndex - 1
+      prevIndex - 1 < 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
@@ -117,55 +85,24 @@ const Carousel = ({ components, type }: CarouselProps) => {
     setCurrentIndex(index);
   }, []);
 
-  const simulateSlide = useCallback(() => {
-    if (windowWidth > 1024) return;
-
-    setSwipeState({
-      isSwiping: true,
-      swipeDistance: 150,
-      shouldTransition: true,
-    });
-    setTimeout(
-      () =>
-        setSwipeState({
-          isSwiping: false,
-          swipeDistance: 0,
-          shouldTransition: true,
-        }),
-      300
-    );
-  }, [windowWidth]);
-
   const setMaxHeight = useCallback(() => {
-    let items = null;
-    let heightToAdd = 0;
-    if (type === "spells") {
-      items = document.getElementsByClassName("spell-text");
-      heightToAdd = 25;
-    } else {
-      items = document.getElementsByClassName("tip");
-      heightToAdd = 70;
-    }
+    let item = document.getElementById("splash-image");
+    if (!item) return;
 
-    let maxHeight = 0;
-    for (let i = 0; i < items.length; i++) {
-      console.log(items[i]);
-      const itemHeight = parseFloat(window.getComputedStyle(items[i]).height);
-      if (itemHeight > maxHeight) maxHeight = itemHeight + heightToAdd;
-    }
+    let heightToAdd = 30;
+    let height = parseFloat(window.getComputedStyle(item).height) + heightToAdd;
 
-    console.log(maxHeight, type);
+    console.log("splash height", height);
     if (innerDiv.current) {
-      innerDiv.current.style.height = `${maxHeight}px`;
+      innerDiv.current.style.height = `${height}px`;
     }
-  }, [type]);
+  }, []);
 
   useEffect(() => {
-    setMaxHeight();
+    setTimeout(() => {
+      setMaxHeight();
+    }, 1000);
     setWindowWidth(window.innerWidth);
-    const timeout = setTimeout(() => {
-      simulateSlide();
-    }, 4000);
 
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
@@ -177,9 +114,8 @@ const Carousel = ({ components, type }: CarouselProps) => {
         setWindowWidth(window.innerWidth);
         setMaxHeight();
       });
-      clearTimeout(timeout);
     };
-  }, [setMaxHeight, simulateSlide]);
+  }, [setMaxHeight]);
 
   return (
     <div
@@ -190,12 +126,11 @@ const Carousel = ({ components, type }: CarouselProps) => {
     >
       <div
         ref={innerDiv}
-        className={classes["inner-div"]}
         style={{ position: "relative", height: 215, overflow: "hidden" }}
       >
-        {carouselComponents.map((component, index) => (
+        {images.map((image, index) => (
           <div
-            className={classes["card-container"]}
+            className={classes["skin-container"]}
             key={index}
             style={{
               position: "absolute",
@@ -212,14 +147,21 @@ const Carousel = ({ components, type }: CarouselProps) => {
               width: "100%",
             }}
           >
-            <Card>{component}</Card>
+            <h3 style={{ textAlign: "center" }}>
+              {image.name === "default" ? t("title.base_skin") : image.name}
+            </h3>
+            <LazyLoadImage src={image.src} alt="champion skin" />
           </div>
         ))}
       </div>
 
       <div className={classes["carousel-indicator"]}>
-        {carouselComponents.map((_, index) => (
+        {images.map((image, index) => (
           <div
+            data-tooltip-id="carousel-indicator"
+            data-tooltip-content={
+              image.name === "default" ? t("title.base_skin") : image.name
+            }
             key={index}
             className={`${classes.dot} ${
               currentIndex === index ? classes.active : ""
@@ -228,8 +170,9 @@ const Carousel = ({ components, type }: CarouselProps) => {
           ></div>
         ))}
       </div>
+      <Tooltip id="carousel-indicator" />
     </div>
   );
 };
 
-export default Carousel;
+export default SkinCarousel;

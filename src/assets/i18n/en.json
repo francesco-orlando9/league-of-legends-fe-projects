@@ -25,7 +25,9 @@
     "home": "Immergiti nel Mondo di League of Legends",
     "champion_lore": "Lore",
     "champion_spells": "Spells",
-    "champion_tips": "Tips"
+    "champion_tips": "Tips",
+    "champion_skins": "Skins",
+    "base_skin": "Default"
   },
   "no_tip_found": "No tip found",
   "playing_as": "Playing as",
