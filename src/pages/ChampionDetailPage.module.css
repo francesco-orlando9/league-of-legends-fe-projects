@@ -19,9 +19,6 @@ section h1 {
   text-transform: capitalize;
 }
 
-.splash-section {
-  max-width: 1024px;
-}
 .splash-section img {
   width: 100%;
 }
@@ -43,8 +40,29 @@ section h1 {
   width: 100%;
 }
 
+@media screen and (min-width: 567px) {
+  section {
+    max-width: 90%;
+  }
+  .splash-section {
+    max-width: 90%;
+  }
+}
+
 @media screen and (min-width: 767px) {
   section {
+    max-width: 75%;
+  }
+  .splash-section {
+    max-width: 75%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  section {
+    max-width: 1024px;
+  }
+  .splash-section {
     max-width: 1024px;
   }
 }
