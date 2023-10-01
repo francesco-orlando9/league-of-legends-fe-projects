@@ -65,3 +65,9 @@ code {
 
   --color-card-background: #595858;
 }
+
+@media screen and (min-width: 1024px) {
+  #root {
+    height: 100vh;
+  }
+}

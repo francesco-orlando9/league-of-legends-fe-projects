@@ -1,6 +1,5 @@
 {
   "site_title": "Lol Champions",
-  "title": "Immergiti nel Mondo di League of Legends",
   "subtitle": "Scopri la storia, le statistiche e i segreti di ogni campione. Inizia ora la tua epica avventura.",
   "cta_all_champions": "Esplora i Campioni",
   "home_introduction": "League of Legends non è solo un gioco – è un mondo ricco di storie, battaglie e campioni unici. Che tu sia un evocatore esperto o tu sia nuovo alla landa, la piattaforma offre un'immersione profonda ai campioni di LoL.",
@@ -19,5 +18,16 @@
     "contact": "Contatti"
   },
   "footer_rights": "Tutte le immagini dei campioni, i nomi e le indicazioni relative sono © e ™ Riot Games. Questa piattaforma è un progetto indipendente e non è affiliata a Riot Games.",
-  "no_champions_found": "Nessun campione trovato."
+  "no_champions_found": "Nessun campione trovato.",
+  "loading-champion-detail": "Caricamento...",
+  "error-loading-champion-detail": "Errore durante il caricamento",
+  "title": {
+    "home": "Immergiti nel Mondo di League of Legends",
+    "champion_lore": "Storia",
+    "champion_spells": "Abilità",
+    "champion_tips": "Consigli"
+  },
+  "no_tip_found": "Nessun consiglio trovato",
+  "playing_as": "Gioca come",
+  "playing_agains": "Gioca contro"
 }

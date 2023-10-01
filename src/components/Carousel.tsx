@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import classes from "./Carousel.module.css";
 import Card from "../layout/Card";
@@ -27,21 +27,27 @@ const defaultSwipeState: SwipeState = {
 };
 
 const Carousel = ({ components, type }: CarouselProps) => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [touchStart, setTouchStart] = useState<number>(0);
   const [touchEnd, setTouchEnd] = useState<number>(0);
-
   const [swipeState, setSwipeState] = useState<SwipeState>(defaultSwipeState);
+
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+
   const innerDiv = useRef<HTMLDivElement>(null);
 
   const minSwipeDistance = 50;
 
   const onTouchStart = (e: any) => {
+    if (windowWidth > 1024) return;
+
     setTouchEnd(0);
     setTouchStart(e.targetTouches[0].clientX);
   };
 
   const onTouchMove = (e: any) => {
+    if (windowWidth > 1024) return;
+
     setSwipeState({
       isSwiping: true,
       swipeDistance: touchStart - e.targetTouches[0].clientX,
@@ -51,6 +57,8 @@ const Carousel = ({ components, type }: CarouselProps) => {
   };
 
   const onTouchEnd = () => {
+    if (windowWidth > 1024) return;
+
     setSwipeState({
       isSwiping: false,
       swipeDistance: 0,
@@ -84,7 +92,6 @@ const Carousel = ({ components, type }: CarouselProps) => {
     return direction;
   };
 
-  // const carouselComponents = [components[0], ...components[1]];
   const carouselComponents: any[] = [];
   components.forEach((c) => {
     if (Array.isArray(c)) {
@@ -111,6 +118,7 @@ const Carousel = ({ components, type }: CarouselProps) => {
   }, []);
 
   const simulateSlide = () => {
+    if (windowWidth > 1024) return;
     setSwipeState({
       isSwiping: true,
       swipeDistance: 150,
@@ -128,7 +136,6 @@ const Carousel = ({ components, type }: CarouselProps) => {
   };
 
   const setMaxHeight = useCallback(() => {
-    // window.getComputedStyle(document.getElementsByClassName("spell-text")[1]).height;
     let items = null;
     let heightToAdd = 0;
     if (type === "spells") {
@@ -145,7 +152,7 @@ const Carousel = ({ components, type }: CarouselProps) => {
       const itemHeight = parseFloat(window.getComputedStyle(items[i]).height);
       if (itemHeight > maxHeight) maxHeight = itemHeight + heightToAdd;
     }
-    debugger;
+
     console.log(maxHeight, type);
     if (innerDiv.current) {
       innerDiv.current.style.height = `${maxHeight}px`;
@@ -154,11 +161,21 @@ const Carousel = ({ components, type }: CarouselProps) => {
 
   useEffect(() => {
     setMaxHeight();
+    setWindowWidth(window.innerWidth);
     const timeout = setTimeout(() => {
       simulateSlide();
     }, 4000);
 
+    window.addEventListener("resize", () => {
+      setWindowWidth(window.innerWidth);
+      setMaxHeight();
+    });
+
     return () => {
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerWidth);
+        setMaxHeight();
+      });
       clearTimeout(timeout);
     };
   }, [setMaxHeight]);
@@ -172,21 +189,26 @@ const Carousel = ({ components, type }: CarouselProps) => {
     >
       <div
         ref={innerDiv}
+        className={classes["inner-div"]}
         style={{ position: "relative", height: 215, overflow: "hidden" }}
       >
         {carouselComponents.map((component, index) => (
           <div
+            className={classes["card-container"]}
             key={index}
             style={{
               position: "absolute",
               transform: `translateX(${
                 currentIndex === 0 && !swipeState.isSwiping
-                  ? index * 350
+                  ? index * windowWidth
                   : swipeState.isSwiping
-                  ? index * 350 - currentIndex * 350 - swipeState.swipeDistance
-                  : index * 350 - currentIndex * 350
+                  ? index * windowWidth -
+                    currentIndex * windowWidth -
+                    swipeState.swipeDistance
+                  : index * windowWidth - currentIndex * windowWidth
               }px)`,
               transition: swipeState.shouldTransition ? "transform 0.3s" : "",
+              width: "100%",
             }}
           >
             <Card>{component}</Card>

@@ -1,13 +1,11 @@
 .container {
   display: grid;
   row-gap: 20px;
+  justify-items: center;
 }
 
 section h1 {
   text-align: center;
-}
-
-.header {
 }
 
 .header h1 {
@@ -30,9 +28,23 @@ section h1 {
 
 .champion-lore {
   text-align: justify;
+  /* margin: 0 auto; */
 }
 
 .champion-lore h1,
 .champion-spells h1 {
   text-align: center;
+}
+
+.champion-spells {
+  width: 100%;
+}
+.champion-tips {
+  width: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  section {
+    max-width: 80%;
+  }
 }

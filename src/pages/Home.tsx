@@ -13,7 +13,7 @@ export default function HomePage() {
           src={ChampionsImage}
           alt=""
         />
-        <h1>{t("title")}</h1>
+        <h1>{t("title.home")}</h1>
         <p>{t("home_introduction")}</p>
         <p>{t("subtitle")}</p>
         <Link to={"/champions"}>{t("cta_all_champions")}</Link>

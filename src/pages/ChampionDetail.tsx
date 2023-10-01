@@ -1,11 +1,14 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { t } from "i18next";
 
 import { fetchChampion } from "../utils/reactQuery";
-import classes from "./ChampionDetailPage.module.css";
 import { getChampionSplashImageUrl } from "../utils/urlUtils";
+
 import ChampionSpell from "../components/Champions/ChampionSpell";
 import Carousel from "../components/Carousel";
+
+import classes from "./ChampionDetailPage.module.css";
 
 export default function ChampionDetailPage() {
   const params = useParams();
@@ -24,11 +27,11 @@ export default function ChampionDetailPage() {
   let content = null;
 
   if (isLoading) {
-    content = <h1>Loading champion data</h1>;
+    content = <h1>{t("loading-champion-detail")}</h1>;
   }
 
   if (isError) {
-    content = <h1>Error occured</h1>;
+    content = <h1>{t("error-loading-champion-detail")}</h1>;
   }
 
   if (data && data.champion) {
@@ -46,11 +49,11 @@ export default function ChampionDetailPage() {
           />
         </section>
         <section className={classes["champion-lore"]}>
-          <h1>Lore</h1>
+          <h1>{t("title.champion_lore")}</h1>
           <p>{champion.lore}</p>
         </section>
         <section className={classes["champion-spells"]}>
-          <h1>Spells</h1>
+          <h1>{t("title.champion_spells")}</h1>
           <Carousel
             type={"spells"}
             components={((): any[] => {
@@ -79,12 +82,15 @@ export default function ChampionDetailPage() {
           {}
         </section>
         <section className={classes["champion-tips"]}>
+          <h1>{t("title.champion_tips")}</h1>
           <Carousel
             type={"tips"}
             components={((): any[] => {
               return [
                 <div className={`${classes["playing-with-tips"]} tip`}>
-                  <h1>Playing as {champion.name}</h1>
+                  <h1>
+                    {t("playing_as")} {champion.name}
+                  </h1>
                   {champion.allytips.length > 0 ? (
                     <ul>
                       {champion.allytips.map((tip: string) => (
@@ -93,12 +99,14 @@ export default function ChampionDetailPage() {
                     </ul>
                   ) : (
                     <p style={{ textAlign: "center", padding: "20px" }}>
-                      No tip found!
+                      {t("no_tip_found")}
                     </p>
                   )}
                 </div>,
                 <div className={`${classes["playing-against-tips"]} tip`}>
-                  <h1>Playing against {champion.name}</h1>
+                  <h1>
+                    {t("playing_agains")} {champion.name}
+                  </h1>
                   {champion.enemytips.length > 0 ? (
                     <ul>
                       {champion.enemytips.map((tip: string) => (
@@ -107,7 +115,7 @@ export default function ChampionDetailPage() {
                     </ul>
                   ) : (
                     <p style={{ textAlign: "center", padding: "20px" }}>
-                      No tip found!
+                      {t("no_tip_found")}
                     </p>
                   )}
                 </div>,

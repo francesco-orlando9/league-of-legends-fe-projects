@@ -1,6 +1,5 @@
 {
   "site_title": "Lol Champions",
-  "title": "Dive into the Realm of League of Legends",
   "subtitle": "Unlock the lore, stats, and secrets of every champion. Begin your epic journey now.",
   "cta_all_champions": "Discover the Champions",
   "home_introduction": "League of Legends isn't just a game – it's a world teeming with stories, battles, and unique champions. Whether you're a seasoned summoner or new to the rift, our platform provides a deep dive to LoL champions.",
@@ -19,5 +18,16 @@
     "contact": "Contact"
   },
   "footer_rights": "All champion images, names, and related indicia are © and ™ Riot Games. This platform is an independent project and is not affiliated with Riot Games.",
-  "no_champions_found": "No champions found."
+  "no_champions_found": "No champions found.",
+  "loading-champion-detail": "Loading champion data",
+  "error-loading-champion-detail": "Error occured",
+  "title": {
+    "home": "Immergiti nel Mondo di League of Legends",
+    "champion_lore": "Lore",
+    "champion_spells": "Spells",
+    "champion_tips": "Tips"
+  },
+  "no_tip_found": "No tip found",
+  "playing_as": "Playing as",
+  "playing_agains": "Playing against"
 }
