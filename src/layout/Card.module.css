@@ -6,5 +6,8 @@
 
 .card {
   border-style: outset;
+}
+
+.card > div:first-child {
   padding: 10px;
 }

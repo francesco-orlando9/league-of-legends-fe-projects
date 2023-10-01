@@ -150,7 +150,7 @@ const SkinCarousel = ({ images }: SkinCarouselProps) => {
             <h3 style={{ textAlign: "center" }}>
               {image.name === "default" ? t("title.base_skin") : image.name}
             </h3>
-            <LazyLoadImage src={image.src} alt="champion skin" />
+            <img src={image.src} alt="champion skin" />
           </div>
         ))}
       </div>
