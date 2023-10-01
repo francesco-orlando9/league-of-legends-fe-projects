@@ -27,9 +27,18 @@
     "champion_spells": "Abilità",
     "champion_tips": "Consigli",
     "champion_skins": "Skins",
-    "base_skin": "Aspetto base"
+    "base_skin": "Aspetto base",
+    "about_page": "Dietro le Quinte di League of Champions",
+    "projects_origin": "Perchè nasce questo progetto",
+    "questions_or_hints": "Hai domande o suggerimenti?",
+    "github_repo": "Repository GitHub"
   },
   "no_tip_found": "Nessun consiglio trovato",
   "playing_as": "Gioca come",
-  "playing_agains": "Gioca contro"
+  "playing_agains": "Gioca contro",
+  "projects_origin_description": "Il progetto è nato dalla mia volontà di applicare le competenze acquisite durante un corso su React. Alla ricerca di un contesto ideale su cui esercitarmi, ho scoperto le API di League Of Legends. Essendo sempre stato affascinato dal gioco, ho colto l'opportunità e ho deciso di dar vita a questo sito.",
+  "site_functionality_description": "Da dettagliate schede informative sui campioni, a potenti strumenti di ricerca e filtri personalizzati, League of Champions è stato progettato pensando all'utente. Esplora, apprendi e immergiti nel mondo di LoL come mai prima d'ora.",
+  "questions_or_hints_description": "Contattami a",
+  "github_repo_description": "Puoi trovare la repository a questo",
+  "coming_soon": "Presto disponibile.."
 }

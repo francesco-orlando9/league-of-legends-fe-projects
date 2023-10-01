@@ -22,14 +22,24 @@
   "loading-champion-detail": "Loading champion data",
   "error-loading-champion-detail": "Error occured",
   "title": {
-    "home": "Immergiti nel Mondo di League of Legends",
+    "home": "Dive into the World of League of Legends",
     "champion_lore": "Lore",
     "champion_spells": "Spells",
     "champion_tips": "Tips",
     "champion_skins": "Skins",
-    "base_skin": "Default"
+    "base_skin": "Default",
+    "about_page": "Behind the Scenes of League of Champions",
+    "projects_origin": "Why was this project born",
+    "site_functionality": "Main Features",
+    "questions_or_hints": "Do you have hints or questions?",
+    "github_repo": "Repository GitHub"
   },
   "no_tip_found": "No tip found",
   "playing_as": "Playing as",
-  "playing_agains": "Playing against"
+  "playing_agains": "Playing against",
+  "projects_origin_description": "The project was born out of my desire to apply the skills I acquired during a course on React. Looking for an ideal context on which to practice, I discovered the League Of Legends API. Having always been fascinated by the game, I seized the opportunity and decided to bring this site to life.",
+  "site_functionality_description": "From detailed champion fact sheets to powerful search tools and customized filters, League of Champions is designed with the user in mind. Explore, learn and immerse yourself in the world of LoL like never before.",
+  "questions_or_hints_description": "Contact me at",
+  "github_repo_description": "You can find the repository at",
+  "coming_soon": "Coming soon.."
 }
