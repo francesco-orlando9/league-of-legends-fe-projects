@@ -55,7 +55,6 @@
 @media screen and (min-width: 1024px) {
   .inner-div {
     display: grid !important;
-    max-width: 80% !important;
     margin: 0px auto !important;
     height: auto !important;
     overflow: unset !important;

@@ -6,7 +6,7 @@ export default function RootLayout() {
   return (
     <>
       <Navbar />
-      <main style={{ margin: "0 2rem", padding: "30px 0", flexGrow: 1 }}>
+      <main style={{ margin: "0 1rem", padding: "30px 0", flexGrow: 1 }}>
         <Outlet />
       </main>
       <Footer />
