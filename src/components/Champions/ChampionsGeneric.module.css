@@ -1,0 +1,125 @@
+.container {
+  width: 200px;
+  height: 400px;
+  position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.container-back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transition: transform 0.8s;
+  background: #000000;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-back div:first-child {
+  padding: 10px 10px 0px 10px;
+}
+.container-back div:nth-last-child(1) {
+  padding: 5px 10px 0 10px;
+}
+
+.champion-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.8s;
+  width: 100%;
+  height: 100%;
+}
+
+.card-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.card-header a {
+  display: flex;
+  align-items: center;
+}
+
+.card-header svg {
+  margin-left: 10px;
+}
+
+.name {
+  margin-bottom: 0;
+  font-size: 1.8em;
+}
+
+.tags {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  z-index: 5;
+  width: 90%;
+  bottom: 10px;
+  left: 5%;
+  transition: transform 0.8s;
+}
+
+.flip {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  width: 90%;
+  top: 10px;
+  left: 5%;
+  transition: transform 0.8s;
+}
+
+.subname {
+  margin-top: 0;
+  margin-bottom: 0.3rem;
+  text-transform: capitalize;
+  max-width: 80%;
+}
+
+.blurb {
+  margin-bottom: 0;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.stat {
+  margin-bottom: 0;
+  margin-top: 0.3rem;
+  height: fit-content;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 250px;
+    height: 500px;
+    position: relative;
+    perspective: 1000px;
+  }
+  .container-back div {
+    padding: 10px;
+  }
+  .blurb {
+    margin-bottom: unset;
+  }
+  .stat {
+    width: unset;
+    margin-bottom: 0.3rem;
+  }
+  .name {
+    font-size: 2.2em;
+    margin-right: 10px;
+  }
+}

@@ -1,6 +1,45 @@
 {
-  "title": "Immergiti nel Mondo di League of Legends",
+  "site_title": "Lol Champions",
   "subtitle": "Scopri la storia, le statistiche e i segreti di ogni campione. Inizia ora la tua epica avventura.",
   "cta_all_champions": "Esplora i Campioni",
-  "home_introduction": "League of Legends non è solo un gioco – è un mondo ricco di storie, battaglie e campioni unici. Che tu sia un evocatore esperto o tu sia nuovo alla landa, la piattaforma offre un'immersione profonda ai campioni di LoL."
+  "home_introduction": "League of Legends non è solo un gioco – è un mondo ricco di storie, battaglie e campioni unici. Che tu sia un evocatore esperto o tu sia nuovo alla landa, la piattaforma offre un'immersione profonda ai campioni di LoL.",
+  "difficulty": "Difficoltà",
+  "attack": "Attacco",
+  "magic": "Magia",
+  "defense": "Defesa",
+  "champion": "Campione",
+  "go_detail": "Dettaglio Campione",
+  "search_a_champion": "Cerca un campione...",
+  "or": "Oppure",
+  "link": {
+    "home": "Home",
+    "champions_gallery": "Campioni",
+    "about": "About",
+    "contact": "Contatti"
+  },
+  "footer_rights": "Tutte le immagini dei campioni, i nomi e le indicazioni relative sono © e ™ Riot Games. Questa piattaforma è un progetto indipendente e non è affiliata a Riot Games.",
+  "no_champions_found": "Nessun campione trovato.",
+  "loading-champion-detail": "Caricamento...",
+  "error-loading-champion-detail": "Errore durante il caricamento",
+  "title": {
+    "home": "Immergiti nel Mondo di League of Legends",
+    "champion_lore": "Storia",
+    "champion_spells": "Abilità",
+    "champion_tips": "Consigli",
+    "champion_skins": "Skins",
+    "base_skin": "Aspetto base",
+    "about_page": "Dietro le Quinte di League of Champions",
+    "projects_origin": "Perchè nasce questo progetto",
+    "site_functionality": "Funzionalità principali",
+    "questions_or_hints": "Hai domande o suggerimenti?",
+    "github_repo": "Repository GitHub"
+  },
+  "no_tip_found": "Nessun consiglio trovato",
+  "playing_as": "Gioca come",
+  "playing_agains": "Gioca contro",
+  "projects_origin_description": "Il progetto è nato dalla mia volontà di applicare le competenze acquisite durante un corso su React. Alla ricerca di un contesto ideale su cui esercitarmi, ho scoperto le API di League Of Legends. Essendo sempre stato affascinato dal gioco, ho colto l'opportunità e ho deciso di dar vita a questo sito.",
+  "site_functionality_description": "Da dettagliate schede informative sui campioni, a potenti strumenti di ricerca e filtri personalizzati, League of Champions è stato progettato pensando all'utente. Esplora, apprendi e immergiti nel mondo di LoL come mai prima d'ora.",
+  "questions_or_hints_description": "Contattami a",
+  "github_repo_description": "Puoi trovare la repository a questo",
+  "coming_soon": "Presto disponibile.."
 }

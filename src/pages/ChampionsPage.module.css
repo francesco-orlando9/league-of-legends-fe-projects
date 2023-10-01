@@ -1,0 +1,94 @@
+.champions-container {
+  display: grid;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+
+.filters-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 150px;
+  text-align: center;
+}
+
+.searchbar-container {
+  width: 305px;
+  margin: 0 auto;
+}
+
+.tags-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 5px;
+  text-align: center;
+}
+
+.tags-container span {
+  max-width: 100px;
+}
+
+.error,
+.loading {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .champions-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 355px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .champions-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 405px;
+  }
+  .tags-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    max-width: 1440px;
+    padding: 0 20%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .champions-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 455px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .champions-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 505px;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  .champions-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+  .searchbar-container {
+    width: 555px;
+  }
+}

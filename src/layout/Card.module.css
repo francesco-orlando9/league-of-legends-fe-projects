@@ -1,0 +1,13 @@
+.champion-card {
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+}
+
+.card {
+  border-style: outset;
+}
+
+.card > div:first-child {
+  padding: 10px;
+}

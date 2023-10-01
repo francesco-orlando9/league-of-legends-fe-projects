@@ -1,0 +1,27 @@
+.spell {
+  display: flex;
+}
+
+.spell-image {
+  width: 30%;
+  display: flex;
+  align-items: self-start;
+  padding-top: 20px;
+}
+
+.spell-image img {
+  width: 75px;
+  height: 75px;
+}
+
+.spell-text {
+  width: 70%;
+}
+
+.spell-text h4 {
+  margin: 0 0 3px;
+}
+
+.spell-text p {
+  margin: 0;
+}
